@@ -24,6 +24,7 @@
 //= require venobox
 //= require isotope.pkgd
 //= require aos
+//= require jquery.easing.min
 
 $(document).ready(function() {
     // Testimonials carousel (uses the Owl Carousel library)
