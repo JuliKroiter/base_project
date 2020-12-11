@@ -40,6 +40,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails_admin', '~> 2.0'
 gem 'devise'
 gem 'rails-settings-cached'
+gem 'friendly_id', '~> 5.4.0'
+
+# File uploader
+gem 'carrierwave', '~> 1.0'
 
 # Views
 gem 'bootstrap', '~> 4.0.0'

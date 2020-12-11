@@ -1,0 +1,11 @@
+.box
+  .icon{style: "background: ##{ service.fa_icon_bg_color };"}
+    = fa_icon service.fa_icon, style: "color: ##{ service.fa_icon_color };"
+  %h4.title
+    = link_to service.name, service
+  %p.description
+    = service.desc
+    %br/
+    от
+    = service.price
+    руб.

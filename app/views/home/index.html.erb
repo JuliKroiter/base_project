@@ -136,30 +136,33 @@
       <div class="row" data-aos="fade-up" data-aos-delay="100">
         <div class="col-lg-12">
           <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+            <li data-filter="*" class="filter-active">Все</li>
+            <%- @portfolio_categories.each do |category| %>
+              <li data-filter=".filter-<%= category.id %>"><%= category.name %></li>
+            <% end %>
           </ul>
         </div>
       </div>
 
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/app1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4><a href="portfolio-details.html">App 1</a></h4>
-              <p>App</p>
-              <div>
-                <a href="assets/img/portfolio/app1.jpg" data-gall="portfolioGallery" title="App 1" class="link-preview venobox"><i class="ion ion-eye"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+        <%- @portfolios.each do |portfolio| %>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-<%= portfolio.portfolio_category_id%>">
+            <div class="portfolio-wrap">
+              <%= image_tag(portfolio.image.url, class: "img-fluid") %>
+              <div class="portfolio-info">
+                <h4>
+                  <%= link_to portfolio.name, portfolio  %>
+                </h4>
+                <p><%= portfolio.description  %></p>
+                <div>
+                  <%= link_to content_tag(:i, '', class: 'ion ion-eye'), portfolio.image.url, data: {gall: 'portfolioGallery'}, title: portfolio.name, class: 'link-preview venobox'%>
+                  <%= link_to content_tag(:i, '', class: 'ion ion-android-open'), portfolio, class: 'link-details', title: 'Подробнее'  %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
+      <% end %>
         <div class="col-lg-4 col-md-6 portfolio-item filter-web" data-wow-delay="0.1s">
           <div class="portfolio-wrap">
             <img src="assets/img/portfolio/web3.jpg" class="img-fluid" alt="">
