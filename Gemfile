@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # AdminPanel
 gem 'rails_admin', '~> 2.0'
 gem 'devise'
+gem 'rails-settings-cached'
 
 # Views
 gem 'bootstrap', '~> 4.0.0'

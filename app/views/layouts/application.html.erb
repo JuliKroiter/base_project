@@ -11,6 +11,151 @@
   </head>
 
   <body>
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-none d-lg-flex align-items-end fixed-top topbar-transparent">
+      <div class="container d-flex justify-content-end">
+        <div class="social-links">
+          <%= render 'home/social_links' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-transparent">
+      <div class="container d-flex align-items-center">
+
+        <h1 class="logo mr-auto"><a href="index.html">Rapid</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="main-nav d-none d-lg-block">
+          <ul>
+            <li class="active"><%= link_to 'Главная', root_path %></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="#team">Команда</a></li>
+            <li><a href="#footer">Контакты</a></li>
+          </ul>
+        </nav><!-- .main-nav-->
+
+      </div>
+    </header><!-- End Header -->
+
     <%= yield %>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="section-bg">
+      <div class="footer-top">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-lg-6">
+
+              <div class="row">
+
+                <div class="col-sm-6">
+
+                  <div class="footer-info">
+                    <h3><%= Setting.footer_title  %></h3>
+                    <p><%= Setting.footer_description %></p>
+                  </div>
+
+                  <div class="footer-newsletter">
+                    <h4><%= Setting.subscribers_title %></h4>
+                    <p><%= Setting.subscribers_description %></p>
+                    <form action="" method="post">
+                      <input type="email" name="email"><input type="submit" value="Подписаться">
+                    </form>
+                  </div>
+
+                </div>
+
+                <div class="col-sm-6">
+<!--                  <div class="footer-links">-->
+<!--                    <h4>Карта сайта</h4>-->
+<!--                    <ul>-->
+<!--                      <li><%#= link_to 'Главная', root_path  %></li>-->
+<!--                      <li><a href="#">О нас</a></li>-->
+<!--                      <li><a href="#services">Услуги</a></li>-->
+<!--                      <li><a href="#portfolio">Портфолио</a></li>-->
+<!--                      <li><a href="#team">Команда</a></li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+
+                  <div class="footer-links">
+                    <h4>Контакты</h4>
+                    <p>
+                      <%= Setting.address  %>
+                      <br>
+                      <strong>Телефон:</strong> <%= phone_to(Setting.phone) %><br>
+                      <strong>Email:</strong> <%= mail_to(Setting.email) %><br>
+                    </p>
+                  </div>
+
+                  <div class="social-links">
+                    <%= render 'home/social_links' %>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+              <div class="form">
+
+                <h4><%= Setting.request_title  %></h4>
+                <p><%= Setting.request_description  %></p>
+
+                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                    <div class="validate"></div>
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                    <div class="validate"></div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                  </div>
+
+                  <div class="text-center"><button type="submit" title="Send Message">Send Message</button></div>
+                </form>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+        </div>
+      </div>
+    </footer><!-- End  Footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   </body>
 </html>

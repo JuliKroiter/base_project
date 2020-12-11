@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Setting::SETTING_FIELDS.each do |field_name|
+  Setting.send("#{field_name}=", field_name)
+end
