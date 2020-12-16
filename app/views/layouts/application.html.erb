@@ -25,7 +25,7 @@
       <div class="container d-flex align-items-center">
 
         <h1 class="logo mr-auto">
-          <%= link_to 'Rapid', root_path %></h1>
+          <%= link_to Setting.project_name, root_path %></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -59,7 +59,7 @@
                 <div class="col-sm-6">
 
                   <div class="footer-info">
-                    <h3><%= Setting.footer_title  %></h3>
+                    <h3><%= Setting.project_name  %></h3>
                     <p><%= Setting.footer_description %></p>
                   </div>
 
@@ -150,7 +150,7 @@
 
       <div class="container">
         <div class="copyright">
-          &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
+          &copy; Copyright <strong><%= Setting.project_name  %></strong>. All Rights Reserved
         </div>
         <div class="credits">
         </div>
