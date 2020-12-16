@@ -1,0 +1,14 @@
+%main#main
+  %section#breadcrumbs.breadcrumbs
+    .container
+      %ol
+        %li
+          = link_to 'Главная', root_path
+        %li
+          = @portfolio.name
+      %h2
+        = @portfolio.name
+  %section.inner-page.pt-4
+    .container
+      = image_tag(@portfolio.image.url)
+      = @portfolio.content.try(:html_safe)
