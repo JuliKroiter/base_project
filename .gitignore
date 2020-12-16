@@ -19,6 +19,7 @@
 
 /node_modules
 /yarn-error.log
+/config/puma.rb
 
 /public/assets
 .byebug_history
