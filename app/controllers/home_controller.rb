@@ -5,5 +5,6 @@ class HomeController < ApplicationController
     @services = Service.where(active: true)
     @portfolio_categories = PortfolioCategory.joins(:portfolios)
     @portfolios = Portfolio.where(active: true)
+    @faqs = Faq.where(active: true)
   end
 end
