@@ -6,7 +6,7 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
+server '165.22.4.124', port: 22, roles: [:web, :app, :db], primary: true
 
 
 # role-based syntax
@@ -17,9 +17,49 @@
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-# role :app, %w{deploy@example.com}, my_property: :my_value
-# role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
-# role :db,  %w{deploy@example.com}
+role :app, %w{root@165.22.4.124}
+role :web, %w{root@165.22.4.124}
+role :db,  %w{root@165.22.4.124}
+
+set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa) }
+
+
+set :rails_env, 'production'
+set :stage, :production
+
+set :keep_assets, 2
+
+set :deploy_to, "/home/ruz_project"
+set :tmp_dir, "/home/ruz_project/tmp"
+set :ssh_address, "rails@165.22.4.124"
+set :branch, "master"
+set :user, "root"
+set :use_sudo, true
+set :rvm_custom_path, '/usr/share/rvm'
+
+
+set :rvm_type, :system
+set :rvm_ruby_version, '2.6.2'
+
+
+require "net/scp"
+require 'active_support/core_ext/object/blank'
+
+
+
+namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:all) do
+      # execute 'service nginx restart'
+    end
+  end
+
+  after :restart, 'sidekiq:restart'
+  before :restart, 'sitemap:create'
+end
+
+
 
 
 

@@ -1,17 +1,13 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-server '165.22.4.124', port: 22, roles: [:web, :app, :db], primary: true
-
 set :application, "ruz_project"
 set :repo_url, "git@github.com:JuliKroiter/base_project.git"
 
 set :application,     'ruz_project'
-set :user,            'rails'
+set :user,            'root'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
-
-set :deploy_to, "/home/ruz_project"
 
 set :pty,             true
 set :use_sudo,        false
@@ -41,40 +37,6 @@ namespace :puma do
 
   before :start, :make_dirs
 end
-
-namespace :deploy do
-  desc "Make sure local git is in sync with remote."
-  task :check_revision do
-    on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
-        puts "Run `git push` to sync changes."
-        exit
-      end
-    end
-  end
-
-  desc 'Initial Deploy'
-  task :initial do
-    on roles(:app) do
-      before 'deploy:restart', 'puma:start'
-      invoke 'deploy'
-    end
-  end
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
-    end
-  end
-
-  before :starting,     :check_revision
-  after  :finishing,    :compile_assets
-  after  :finishing,    :cleanup
-  after  :finishing,    :restart
-end
-
 
 
 # Default value for :format is :airbrussh.
