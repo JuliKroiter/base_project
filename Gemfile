@@ -68,6 +68,13 @@ group :development do
 
   gem 'debase', '0.2.2'
   gem 'ruby-debug-ide', '0.7.0.beta7'
+
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+
 end
 
 group :test do
