@@ -12,7 +12,7 @@ set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-# set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.error.log"
@@ -26,15 +26,10 @@ append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", 'public'
 
 namespace :puma do
-  desc 'Create Directories for Puma Pids and Socket'
-  task :make_dirs do
-    on roles(:app) do
-      execute "mkdir #{shared_path}/tmp/sockets -p"
-      execute "mkdir #{shared_path}/tmp/pids -p"
-    end
+  desc 'Start puma'
+  task :start do
+    execute "bundle exec pumactl -F /home/deploy/deploy/apps/base_proj/current/config/puma/production.rb start"
   end
-
-  before :start, :make_dirs
 end
 
 
