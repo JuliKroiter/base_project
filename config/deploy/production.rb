@@ -7,10 +7,10 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-set :application, "ruz_project"
-set :user,            'root'
+set :application, "base_proj"
+set :user,            'deploy'
 
-server '134.209.214.180', port: 22, roles: [:web, :app, :db], primary: true
+server '167.71.73.197', port: 22, roles: [:web, :app, :db], primary: true
 
 
 # role-based syntax
@@ -21,9 +21,9 @@ server '134.209.214.180', port: 22, roles: [:web, :app, :db], primary: true
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-# role :app, %w{root@134.209.214.180}
-# role :web, %w{root@134.209.214.180}
-# role :db,  %w{root@134.209.214.180}
+# role :app, %w{deploy@167.71.73.197}
+# role :web, %w{deploy@167.71.73.197}
+# role :db,  %w{deploy@167.71.73.197}
 
 set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa) }
 
@@ -33,10 +33,10 @@ set :stage, :production
 set :keep_assets, 2
 
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :tmp_dir, "/home/ruz_project/tmp"
-set :ssh_address, "rails@134.209.214.180"
+set :tmp_dir, "/home/base_proj/tmp"
+set :ssh_address, "deploy@167.71.73.197"
 set :branch, "master"
-set :user, "root"
+set :user, "deploy"
 set :use_sudo, true
 set :rvm_custom_path, '/usr/share/rvm'
 
