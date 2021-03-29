@@ -32,13 +32,13 @@ set :stage, :production
 
 set :keep_assets, 2
 
-set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :tmp_dir, "/home/base_proj/tmp"
+set :deploy_to, "/home/deploy/#{fetch(:user)}/apps/#{fetch(:application)}"
+set :tmp_dir, "/home/deploy/base_proj/tmp"
 set :ssh_address, "deploy@167.71.73.197"
 set :branch, "master"
 set :user, "deploy"
 set :use_sudo, true
-set :rvm_custom_path, '/usr/share/rvm'
+set :rvm_custom_path, '/home/deploy/.rvm'
 
 
 set :rvm_type, :system
