@@ -6,7 +6,11 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-server '165.22.4.124', port: 22, roles: [:web, :app, :db], primary: true
+
+set :application, "ruz_project"
+set :user,            'root'
+
+server '134.209.214.180', port: 22, roles: [:web, :app, :db], primary: true
 
 
 # role-based syntax
@@ -17,21 +21,20 @@ server '165.22.4.124', port: 22, roles: [:web, :app, :db], primary: true
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-role :app, %w{root@165.22.4.124}
-role :web, %w{root@165.22.4.124}
-role :db,  %w{root@165.22.4.124}
+# role :app, %w{root@134.209.214.180}
+# role :web, %w{root@134.209.214.180}
+# role :db,  %w{root@134.209.214.180}
 
 set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa) }
-
 
 set :rails_env, 'production'
 set :stage, :production
 
 set :keep_assets, 2
 
-set :deploy_to, "/home/ruz_project"
+set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :tmp_dir, "/home/ruz_project/tmp"
-set :ssh_address, "rails@165.22.4.124"
+set :ssh_address, "rails@134.209.214.180"
 set :branch, "master"
 set :user, "root"
 set :use_sudo, true
@@ -47,16 +50,49 @@ require 'active_support/core_ext/object/blank'
 
 
 
-namespace :deploy do
-  desc 'Restart application'
-  task :restart do
-    on roles(:all) do
-      # execute 'service nginx restart'
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir #{shared_path}/tmp/sockets -p"
+      execute "mkdir #{shared_path}/tmp/pids -p"
     end
   end
 
-  after :restart, 'sidekiq:restart'
-  before :restart, 'sitemap:create'
+  before :start, :make_dirs
+end
+
+namespace :deploy do
+  desc "Make sure local git is in sync with remote."
+  task :check_revision do
+    on roles(:app) do
+      unless `git rev-parse HEAD` == `git rev-parse origin/master`
+        puts "WARNING: HEAD is not the same as origin/master"
+        puts "Run `git push` to sync changes."
+        exit
+      end
+    end
+  end
+
+  desc 'Initial Deploy'
+  task :initial do
+    on roles(:app) do
+      before 'deploy:restart', 'puma:start'
+      invoke 'deploy'
+    end
+  end
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # invoke 'puma:restart'
+    end
+  end
+
+  before :starting,     :check_revision
+  after  :finishing,    :compile_assets
+  after  :finishing,    :cleanup
+  after  :finishing,    :restart
 end
 
 
