@@ -10,7 +10,7 @@
 set :application, "base_proj"
 set :user,            'deploy'
 
-server '167.71.73.197', port: 22, roles: [:web, :app, :db], primary: true
+server '134.209.201.236', port: 22, roles: [:web, :app, :db], primary: true
 
 
 # role-based syntax
@@ -21,9 +21,9 @@ server '167.71.73.197', port: 22, roles: [:web, :app, :db], primary: true
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-# role :app, %w{deploy@167.71.73.197}
-# role :web, %w{deploy@167.71.73.197}
-# role :db,  %w{deploy@167.71.73.197}
+# role :app, %w{deploy@134.209.201.236}
+# role :web, %w{deploy@134.209.201.236}
+# role :db,  %w{deploy@134.209.201.236}
 
 set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa) }
 
@@ -34,7 +34,7 @@ set :keep_assets, 2
 
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :tmp_dir, "/home/deploy/base_proj/tmp"
-set :ssh_address, "deploy@167.71.73.197"
+set :ssh_address, "deploy@134.209.201.236"
 set :branch, "master"
 set :user, "deploy"
 set :use_sudo, true
