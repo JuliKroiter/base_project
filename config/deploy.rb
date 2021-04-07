@@ -25,12 +25,6 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", 'public'
 
-namespace :puma do
-  desc 'Start puma'
-  task :start do
-    execute "bundle exec pumactl -F /home/deploy/deploy/apps/base_proj/current/config/puma/production.rb start"
-  end
-end
 
 
 # Default value for :format is :airbrussh.

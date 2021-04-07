@@ -32,7 +32,7 @@ set :stage, :production
 
 set :keep_assets, 2
 
-set :deploy_to, "/home/deploy/#{fetch(:user)}/apps/#{fetch(:application)}"
+set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :tmp_dir, "/home/deploy/base_proj/tmp"
 set :ssh_address, "deploy@167.71.73.197"
 set :branch, "master"
