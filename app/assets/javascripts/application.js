@@ -25,6 +25,7 @@
 //= require isotope.pkgd
 //= require aos
 //= require jquery.easing.min
+//= require jquery.mask
 
 $(document).ready(function() {
     // Testimonials carousel (uses the Owl Carousel library)
@@ -61,4 +62,5 @@ $(document).ready(function() {
         items: 1
     });
 
+    $("#customer_request_phone").mask("+7(999) 999 99 99");
 });

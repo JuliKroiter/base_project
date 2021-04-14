@@ -1,0 +1,26 @@
+<h4><%= Setting.request_title  %></h4>
+<p><%= Setting.request_description  %></p>
+
+<%= form_for @customer_request, html: {class: 'php-email-form'}, url: customer_requests_path, remote: true do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Ваше имя', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.phone_field :phone, class: 'form-control', placeholder: 'Ваш телефон', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :message, class: 'form-control', rows: 5, placeholder: 'Сообщение', required: true %>
+    <div class="validate"></div>
+  </div>
+
+  <div class="mb-3">
+    <div class="loading">Загрузка</div>
+    <div class="error-message">Ошибка, Ваше сообщение не было отправлено </div>
+    <div class="sent-message">Ваше сообщение отправлено успешно. <br> Мы свяжемся с Вами в ближайшее время</div>
+  </div>
+
+
+  <div class="text-center">
+    <%= f.submit "Отправить" %>
+  </div>
+<% end %>

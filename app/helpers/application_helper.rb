@@ -14,4 +14,14 @@ module ApplicationHelper
       end
     end
   end
+
+  def error_messages(errors)
+    list = ''
+    errors.full_messages.each do |msg|
+      list << content_tag(:li, msg).html_safe
+    end
+    content_tag(:ul) do
+      list
+    end
+  end
 end

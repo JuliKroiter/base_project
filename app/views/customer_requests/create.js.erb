@@ -1,0 +1,8 @@
+$('#new_customer_request_block').html('<%=j render @customer_request %>');
+if(<%= @customer_request.valid? %>) {
+    $(".sent-message").css('display', 'block');
+    $(".error-message").css('display', 'none');
+} else {
+    $(".error-message").css('display', 'block');
+    $(".sent-message").css('display', 'none');
+}
