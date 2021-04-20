@@ -6,8 +6,21 @@
           = link_to 'Главная', root_path
         %li
           = @service.name
-      %h2
-        = @service.title
-  %section.inner-page.pt-4
-    .container
-      = @service.content.try(:html_safe)
+  %section.portfolio-details#portfolio-details
+    .container{"data-aos" => "fade-up"}
+      .portfolio-details-container
+        .owl-carousel.portfolio-details-carousel
+          - @service.images.each do |image|
+            = image_tag(image.image.url, class: 'img-fluid')
+        .portfolio-info
+          %h3 Информация
+          %ul
+            %li
+              %strong> Название
+              \:
+              = @service.name
+      .portfolio-description
+        %h2
+          = @service.title
+        %p
+          = @service.content.try(:html_safe)

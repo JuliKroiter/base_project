@@ -6,9 +6,25 @@
           = link_to 'Главная', root_path
         %li
           = @portfolio.name
-      %h2
-        = @portfolio.name
-  %section.inner-page.pt-4
-    .container
-      = image_tag(@portfolio.image.url)
-      = @portfolio.content.try(:html_safe)
+  %section.portfolio-details#portfolio-details
+    .container{"data-aos" => "fade-up"}
+      .portfolio-details-container
+        .owl-carousel.portfolio-details-carousel
+          - @portfolio.images.each do |image|
+            = image_tag(image.image.url, class: 'img-fluid')
+        .portfolio-info
+          %h3 Информация
+          %ul
+            %li
+              %strong> Название
+              \:
+              = @portfolio.name
+            %li
+              %strong> Категория
+              \:
+              = @portfolio.portfolio_category.try(:name)
+      .portfolio-description
+        %h2
+          = @portfolio.name
+        %p
+          = @portfolio.content.try(:html_safe)
