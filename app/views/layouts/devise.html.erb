@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BaseProject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-none d-lg-flex align-items-end fixed-top topbar-transparent">
+      <div class="container d-flex justify-content-end">
+        <div class="social-links">
+          <%= render 'home/social_links' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-transparent">
+      <div class="container d-flex align-items-center">
+
+        <h1 class="logo mr-auto">
+          <%= link_to Setting.project_name, root_path %></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="main-nav d-none d-lg-block">
+          <ul>
+            <li class="active"><%= link_to 'Главная', root_path %></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="#team">Команда</a></li>
+            <li><a href="#footer">Контакты</a></li>
+          </ul>
+        </nav><!-- .main-nav-->
+
+      </div>
+    </header><!-- End Header -->
+
+    <%= yield %>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="section-bg">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><%= Setting.project_name  %></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+        </div>
+      </div>
+    </footer><!-- End  Footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  </body>
+</html>
