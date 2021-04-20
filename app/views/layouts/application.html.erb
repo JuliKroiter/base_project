@@ -6,8 +6,8 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -32,11 +32,11 @@
         <nav class="main-nav d-none d-lg-block">
           <ul>
             <li class="active"><%= link_to 'Главная', root_path %></li>
-            <li><a href="#about">О нас</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#portfolio">Портфолио</a></li>
-            <li><a href="#team">Команда</a></li>
-            <li><a href="#footer">Контакты</a></li>
+            <li><%= link_to 'О нас', root_path(anchor: 'about') %></li>
+            <li><%= link_to 'Услуги', root_path(anchor: 'services') %></li>
+            <li><%= link_to 'Портфолио', root_path(anchor: 'portfolio') %></li>
+            <li><%= link_to 'Команда', root_path(anchor: 'team') %></li>
+            <li><%= link_to 'Контакты', root_path(anchor: 'footer') %></li>
           </ul>
         </nav><!-- .main-nav-->
 
