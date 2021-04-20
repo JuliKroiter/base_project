@@ -1,8 +1,12 @@
 $('#new_customer_request_block').html('<%=j render @customer_request %>');
 if(<%= @customer_request.valid? %>) {
-    $(".sent-message").css('display', 'block');
+    $( ".mb-3 .sent-message" ).slideDown( "slow" );
+    setTimeout(function(){ $( ".mb-3 .sent-message" ).slideUp( "slow" ); }, 3000);
+
     $(".error-message").css('display', 'none');
 } else {
-    $(".error-message").css('display', 'block');
+    $( ".mb-3 .error-message" ).slideDown( "slow" );
+    setTimeout(function(){ $( ".mb-3 .error-message" ).slideUp( "slow" ); }, 3000);
+
     $(".sent-message").css('display', 'none');
 }

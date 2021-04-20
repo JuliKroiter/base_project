@@ -64,11 +64,7 @@
                   </div>
 
                   <div class="footer-newsletter">
-                    <h4><%= Setting.subscribers_title %></h4>
-                    <p><%= Setting.subscribers_description %></p>
-                    <form action="" method="post">
-                      <input type="email" name="email"><input type="submit" value="Подписаться">
-                    </form>
+                    <%= render @subscription %>
                   </div>
 
                 </div>

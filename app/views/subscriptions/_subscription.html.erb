@@ -1,0 +1,6 @@
+<h4><%= Setting.subscribers_title %></h4>
+<p><%= Setting.subscribers_description %></p>
+<%= form_for @subscription, url: subscriptions_path, remote: true do |f| %>
+  <%= f.email_field :mail %><%= f.submit 'Подписаться' %>
+<% end %>
+<div class="sent-message">Вы успешно подписаны!</div>

@@ -1,0 +1,6 @@
+if(<%= @subscription.valid? %>) {
+    $( ".footer-newsletter .sent-message" ).slideDown( "slow" );
+    setTimeout(function(){ $( ".footer-newsletter .sent-message" ).slideUp( "slow" ); }, 3000);
+} else {
+    $( ".footer-newsletter .sent-message" ).slideUp( "slow" );
+}

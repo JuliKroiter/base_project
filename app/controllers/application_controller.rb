@@ -3,5 +3,6 @@ class ApplicationController < ActionController::Base
 
   def set_layout_variables
     @customer_request = CustomerRequest.new
+    @subscription = Subscription.new
   end
 end
