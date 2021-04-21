@@ -24,7 +24,7 @@
 
       <header class="section-header">
         <h3><%= Setting.about_company_title %></h3>
-        <p><%= Setting.about_company_description %></p>
+        <p><%= Setting.about_company_description.try(:html_safe) %></p>
       </header>
 
       <div class="row">
@@ -37,7 +37,7 @@
 
         <div class="col-lg-6">
           <div class="why-us-content">
-            <%= Setting.about_company_content %>
+            <%= Setting.about_company_content.try(:html_safe) %>
           </div>
 
         </div>
@@ -63,8 +63,8 @@
         <div class="col-lg-7 col-md-6">
           <div class="about-content" data-aos="fade-left" data-aos-delay="100">
             <h2><%= Setting.about_us_title %></h2>
-            <h3><%= Setting.about_us_description %></h3>
-            <%= Setting.about_us_content %>
+            <h3><%= Setting.about_us_description.try(:html_safe) %></h3>
+            <%= Setting.about_us_content.try(:html_safe) %>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
     <div class="container">
       <div class="row counters" data-aos="fade-up" data-aos-delay="100">
 
-        <%- (1...4).each do |counter| %>
+        <%- (1..4).each do |counter| %>
           <div class="col-lg-3 col-6 text-center">
             <span data-toggle="counter-up"><%= Setting.send("counter_#{counter}_value") %></span>
             <p><%= Setting.send("counter_#{counter}_title") %></p>

@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   # GET /pages.json
   def index
     @services = Service.where(active: true)
-    @portfolio_categories = PortfolioCategory.joins(:portfolios)
+    @portfolio_categories = PortfolioCategory.joins(:portfolios).uniq
     @portfolios = Portfolio.where(active: true)
     @sales = Sale.where(active: true)
     @employers = Employee.where(active: true)
