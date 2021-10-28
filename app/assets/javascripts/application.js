@@ -21,7 +21,7 @@
 //= require counterup/counterup.min
 //= require owl.carousel
 //= require venobox
-//= require isotope.pkgd
+// require isotope.pkgd
 //= require aos
 //= require jquery.easing.min
 //= require jquery.mask
